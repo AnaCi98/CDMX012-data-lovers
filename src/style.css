@@ -1,4 +1,7 @@
 @media (min-width:801px){
+
+
+
     select{
         position: absolute;
         top: 30%;
@@ -185,11 +188,12 @@
         top: 85px;
         font-size: 35px;
     }
-    #popu{
+    #populares{
         position: absolute;
-        left: 170px;
-        top: 250px;
+        left: 16%;
+        top: 42%;
         font-size: 25px;
+        text-align: center;
     }
     #modales{
         position: fixed;
