@@ -37,7 +37,7 @@ posicion.innerHTML = "";
 for(let i = 0; i< 10;i++){
 posicion.innerHTML += `<div class= "conte" >
                         <div class = "frente"> 
-                        <img src="rickandmorty/pasaporte.png" alt="Pasaporte" class="pasaporte" > 
+                        <a href="#${todasLasIds[i]}"><img src="rickandmorty/pasaporte.png" alt="Pasaporte" class="pasaporte" > </a>
                         <p id="nombre" class="nombres" >${todosLosNombres[i]}</p>
                         </div>
                         <div class= "atras">
@@ -77,7 +77,7 @@ botonLupa.addEventListener("click", buscador);
                     busqueda.innerHTML ="Se encontraron " + contador.length + " resultados para " + "´" + valorInput.value + "´";
                     posicion.innerHTML +=  `<div class= "conte" >
                       <div class = "frente"> 
-                      <img src="rickandmorty/pasaporte.png" alt="Pasaporte" class="pasaporte" > 
+                      <a href="#${valor.id}"><img src="rickandmorty/pasaporte.png" alt="Pasaporte" class="pasaporte" ></a>
                       <p id="nombre" class="nombres" >${valor.name}</p>
                       </div>
                       <div class= "atras">
