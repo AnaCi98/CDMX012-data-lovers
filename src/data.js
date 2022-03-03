@@ -5,15 +5,20 @@ let nombresPersonaje = data.sort((a,b)=>{
     return -1;
   }
   if(a.name>b.name){ // "b" va primero que "a"
-      return 1;
-    }
-}
-  );
+    return 1;
+  }
+return 0;
+ });
   return nombresPersonaje;
 };
 
-export let porNombre = (data,condition) => {
-return data.filter(personaje => {return personaje.name.toLowerCase() === condition});
+
+export const porNombre = (data) => {
+  return data.filter( (personaje) =>{
+  if(personaje.name){
+    return personaje;
+  }
+  })
 }
 
 

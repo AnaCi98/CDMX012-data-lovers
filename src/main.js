@@ -1,4 +1,4 @@
-import {ordenarABC} from './data.js';
+import {ordenarABC, porNombre} from './data.js';
 // import data from './data/lol/lol.js';
 import data from './data/rickandmorty/rickandmorty.js';
 // import data from './data/rickandmorty/rickandmorty.js';
@@ -9,6 +9,9 @@ const valores = data.results; //Variable que toma todos los valores de la data
 const busqueda = document.getElementById("popu"); //Parrafo que aparece debajo del buscador que le muestra al usuario los resultados de lo que busco en el buscador (Ejemplo: Resultados de la busqueda de Morty)
 const posicion = document.getElementById("all"); //(experimento)Nombre que esta debajo del pasaporte
 const modales = document.getElementById("modales");
+const nombres = porNombre(valores);
+const ordenados = ordenarABC(nombres);
+
 
 window.addEventListener("DOMContentLoaded", populares);
 function populares(){
@@ -64,13 +67,12 @@ botonLupa.addEventListener("click", buscador);
 
    function buscador()// Al dar click a la lupa, 
       {                
-        let nombresOrdenados = ordenarABC(valores);          
         let contador = []; 
         posicion.innerHTML = "";  //Limpia la busqueda anterior e inicializar la variable                          //te ejecuta la siguiente funcion
         let buscar = valorInput.value.toLowerCase();
         busqueda.innerHTML= "";
            if(valorInput.value != ""){          
-              for (let valor of nombresOrdenados){
+              for (let valor of ordenados){
                 let nombre = valor.name.toLowerCase();  
                   if(nombre.indexOf(buscar) !== -1){ 
                     contador.push(valor.name);
