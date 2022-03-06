@@ -54,11 +54,11 @@ posicion.innerHTML += `<div class= "conte" >
                       <img src="${todasLasImagenes[i]}" alt="Pasaporte" class="fotomodal">
                       <a href="#vacio"> <img src="rickandmorty/cerrar.png" alt="Cerrar" class="cerrar" ></a>
                       <div class="datos">
-                      <p class="moletras">Nombre: ${todosLosNombres[i]}.</p>
-                      <p class="moletras">Especie: ${todasLasEspecies[i]} .</p>
-                      <p class="moletras">Género:${todosLosGeneros[i]}. </p>
-                      <p class="moletras">Origen: ${todosLosOrigenes[i]}</p>
-                      <p class="moletras">Capítulos en los que aparece:${todosLosEpisodios[i]}.</p>
+                      <p class="moletras">Nombre: ${todosLosNombres[i]} </p>
+                      <p class="moletras">Especie: ${todasLasEspecies[i]} </p>
+                      <p class="moletras">Género: ${todosLosGeneros[i]} </p>
+                      <p class="moletras">Origen: ${todosLosOrigenes[i]} </p>
+                      <p class="moletras">Capítulos en los que aparece: ${todosLosEpisodios[i]} </p>
                       </div> `            
                     }
 }
@@ -94,11 +94,11 @@ botonLupa.addEventListener("click", buscador);
                     <img src="${valor.image}" alt="Pasaporte" class="fotomodal">
                     <a href="#vacio"> <img src="rickandmorty/cerrar.png" alt="Cerrar" class="cerrar" ></a>
                     <div class="datos">
-                    <p class="moletras">Nombre: ${valor.name}.</p>
-                    <p class="moletras">Especie: ${valor.species}.</p>
-                    <p class="moletras">Género: ${valor.gender}.</p>
-                    <p class="moletras">Origen: ${valor.origin.name}.</p>
-                    <p class="moletras">Capítulos en los que aparece:${valor.episode.length} .</p>
+                    <p class="moletras">Nombre: ${valor.name} </p>
+                    <p class="moletras">Especie: ${valor.species} </p>
+                    <p class="moletras">Género: ${valor.gender} </p>
+                    <p class="moletras">Origen: ${valor.origin.name} </p>
+                    <p class="moletras">Capítulos en los que aparece: ${valor.episode.length} </p>
                     </div> `
                                    }
              }  } 
@@ -133,11 +133,11 @@ function filtrado()
                                     <img src="${valor.image}" alt="Pasaporte" class="fotomodal">
                                     <a href="#vacio"> <img src="rickandmorty/cerrar.png" alt="Cerrar" class="cerrar" ></a>
                                     <div class="datos">
-                                    <p class="moletras">Nombre: ${valor.name}.</p>
-                                    <p class="moletras">Especie: ${valor.species}.</p>
-                                    <p class="moletras">Género: ${valor.gender}.</p>
-                                    <p class="moletras">Origen: ${valor.origin.name}.</p>
-                                    <p class="moletras">Capítulos en los que aparece:${valor.episode.length} .</p>
+                                    <p class="moletras">Nombre: ${valor.name} </p>
+                                    <p class="moletras">Especie: ${valor.species} </p>
+                                    <p class="moletras">Género: ${valor.gender} </p>
+                                    <p class="moletras">Origen: ${valor.origin.name} </p>
+                                    <p class="moletras">Capítulos en los que aparece: ${valor.episode.length} </p>
                                     </div> `
             }
                              }  
@@ -167,11 +167,11 @@ filtroGenero.addEventListener("change", genero);
                                                                  <img src="${valor.image}" alt="Pasaporte" class="fotomodal">
                                                                  <a href="#vacio"> <img src="rickandmorty/cerrar.png" alt="Cerrar" class="cerrar" ></a>
                                                                  <div class="datos">
-                                                                 <p class="moletras">Nombre: ${valor.name}.</p>
-                                                                 <p class="moletras">Especie: ${valor.species}.</p>
-                                                                 <p class="moletras">Género: ${valor.gender}.</p>
-                                                                 <p class="moletras">Origen: ${valor.origin.name}.</p>
-                                                                 <p class="moletras">Capítulos en los que aparece:${valor.episode.length} .</p>
+                                                                 <p class="moletras">Nombre: ${valor.name} </p>
+                                                                 <p class="moletras">Especie: ${valor.species} </p>
+                                                                 <p class="moletras">Género: ${valor.gender} </p>
+                                                                 <p class="moletras">Origen: ${valor.origin.name} </p>
+                                                                 <p class="moletras">Capítulos en los que aparece: ${valor.episode.length} </p>
                                                                  </div> `
                                          }
                                                           }  
