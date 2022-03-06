@@ -1,4 +1,4 @@
-import {ordenarABC, porNombre} from './data.js';
+import {ordenar, porNombre, porGenero} from './data.js';
 // import data from './data/lol/lol.js';
 import data from './data/rickandmorty/rickandmorty.js';
 // import data from './data/rickandmorty/rickandmorty.js';
@@ -10,8 +10,7 @@ const busqueda = document.getElementById("popu"); //Parrafo que aparece debajo d
 const posicion = document.getElementById("all"); //(experimento)Nombre que esta debajo del pasaporte
 const modales = document.getElementById("modales");
 const nombres = porNombre(valores);
-const ordenados = ordenarABC(nombres);
-
+const ordenados = ordenar(nombres);
 
 window.addEventListener("DOMContentLoaded", populares);
 function populares(){
@@ -70,13 +69,13 @@ botonLupa.addEventListener("click", buscador);
         let contador = []; 
         posicion.innerHTML = "";  //Limpia la busqueda anterior e inicializar la variable                          //te ejecuta la siguiente funcion
         let buscar = valorInput.value.toLowerCase();
-        busqueda.innerHTML= "";
+       busqueda.innerHTML= "";
            if(valorInput.value != ""){          
               for (let valor of ordenados){
                 let nombre = valor.name.toLowerCase();  
                   if(nombre.indexOf(buscar) !== -1){ 
                     contador.push(valor.name);
-                    busqueda.innerHTML ="Se encontraron " + contador.length + " resultados para " + "´" + valorInput.value + "´";
+                   busqueda.innerHTML ="Se encontraron " + contador.length + " resultados para " + "´" + valorInput.value + "´";
                     posicion.innerHTML +=  `<div class= "conte" >
                       <div class = "frente"> 
                       <img src="rickandmorty/pasaporte.png" alt="Pasaporte" class="pasaporte" > 
@@ -104,4 +103,33 @@ botonLupa.addEventListener("click", buscador);
              else{
                            posicion.innerHTML +=  ` ` //Es el resultado de una busqueda vacia
                          }
-                      }
+                        }
+
+document.getElementById("filtroAlf").addEventListener("change", function(){
+  posicion.innerHTML = ""; 
+  let personajesGenero = porGenero(this.value,nombres)
+  for(let personajes of personajesGenero){
+    posicion.innerHTML +=  `<div class= "conte" >
+    <div class = "frente"> 
+    <img src="rickandmorty/pasaporte.png" alt="Pasaporte" class="pasaporte" > 
+    <p id="nombre" class="nombres" >${personajes.name}</p>
+    </div>
+    <div class= "atras">
+    <a href="#${personajes.id}"><img src="${personajes.image}" alt="Pasaporte" class="foto"></a>
+    <p class="nombres">${personajes.name}</p>
+    </div>
+    </div>
+  `   
+  modales.innerHTML+= ` <div id="${personajes.id}" class="contmodal">
+  <div id="modal" class="modal">
+  <img src="${personajes.image}" alt="Pasaporte" class="fotomodal">
+  <a href="#vacio"> <img src="rickandmorty/cerrar.png" alt="Cerrar" class="cerrar" ></a>
+  <div class="datos">
+  <p class="moletras">Nombre: ${personajes.name}.</p>
+  <p class="moletras">Especie: ${personajes.species}.</p>
+  <p class="moletras">Género: ${personajes.gender}.</p>
+  <p class="moletras">Origen: ${personajes.origin.name}.</p>
+  <p class="moletras">Capítulos en los que aparece:${personajes.episode.length} .</p>
+  </div> `
+  } 
+});
