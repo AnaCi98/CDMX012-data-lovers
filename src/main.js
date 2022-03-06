@@ -1,4 +1,4 @@
-import {ordenar, porNombre, porGenero} from './data.js';
+import { ordenar, porGenero, porNombre } from './data.js';
 // import data from './data/lol/lol.js';
 import data from './data/rickandmorty/rickandmorty.js';
 // import data from './data/rickandmorty/rickandmorty.js';
@@ -10,7 +10,8 @@ const busqueda = document.getElementById("popu"); //Parrafo que aparece debajo d
 const posicion = document.getElementById("all"); //(experimento)Nombre que esta debajo del pasaporte
 const modales = document.getElementById("modales");
 const nombres = porNombre(valores);
-const ordenados = ordenar(nombres);
+const filtroAlf = document.getElementById("filtroAlf");
+const filtroGenero = document.getElementById("filtroGenero");
 
 window.addEventListener("DOMContentLoaded", populares);
 function populares(){
@@ -39,7 +40,7 @@ posicion.innerHTML = "";
 for(let i = 0; i< 10;i++){
 posicion.innerHTML += `<div class= "conte" >
                         <div class = "frente"> 
-                        <img src="rickandmorty/pasaporte.png" alt="Pasaporte" class="pasaporte" > 
+                        <a href="#${todasLasIds[i]}"><img src="rickandmorty/pasaporte.png" alt="Pasaporte" class="pasaporte" > </a>
                         <p id="nombre" class="nombres" >${todosLosNombres[i]}</p>
                         </div>
                         <div class= "atras">
@@ -65,20 +66,21 @@ posicion.innerHTML += `<div class= "conte" >
 botonLupa.addEventListener("click", buscador);
 
    function buscador()// Al dar click a la lupa, 
+
       {                
         let contador = []; 
         posicion.innerHTML = "";  //Limpia la busqueda anterior e inicializar la variable                          //te ejecuta la siguiente funcion
         let buscar = valorInput.value.toLowerCase();
-       busqueda.innerHTML= "";
+        busqueda.innerHTML= "";
            if(valorInput.value != ""){          
-              for (let valor of ordenados){
+              for (let valor of nombres){
                 let nombre = valor.name.toLowerCase();  
                   if(nombre.indexOf(buscar) !== -1){ 
                     contador.push(valor.name);
-                   busqueda.innerHTML ="Se encontraron " + contador.length + " resultados para " + "´" + valorInput.value + "´";
+                    busqueda.innerHTML ="Se encontraron " + contador.length + " resultados para " + "´" + valorInput.value + "´";
                     posicion.innerHTML +=  `<div class= "conte" >
                       <div class = "frente"> 
-                      <img src="rickandmorty/pasaporte.png" alt="Pasaporte" class="pasaporte" > 
+                      <a href="#${valor.id}"><img src="rickandmorty/pasaporte.png" alt="Pasaporte" class="pasaporte" ></a>
                       <p id="nombre" class="nombres" >${valor.name}</p>
                       </div>
                       <div class= "atras">
@@ -103,33 +105,76 @@ botonLupa.addEventListener("click", buscador);
              else{
                            posicion.innerHTML +=  ` ` //Es el resultado de una busqueda vacia
                          }
-                        }
+                      }
 
-document.getElementById("filtroAlf").addEventListener("change", function(){
-  posicion.innerHTML = ""; 
-  let personajesGenero = porGenero(this.value,nombres)
-  for(let personajes of personajesGenero){
-    posicion.innerHTML +=  `<div class= "conte" >
-    <div class = "frente"> 
-    <img src="rickandmorty/pasaporte.png" alt="Pasaporte" class="pasaporte" > 
-    <p id="nombre" class="nombres" >${personajes.name}</p>
-    </div>
-    <div class= "atras">
-    <a href="#${personajes.id}"><img src="${personajes.image}" alt="Pasaporte" class="foto"></a>
-    <p class="nombres">${personajes.name}</p>
-    </div>
-    </div>
-  `   
-  modales.innerHTML+= ` <div id="${personajes.id}" class="contmodal">
-  <div id="modal" class="modal">
-  <img src="${personajes.image}" alt="Pasaporte" class="fotomodal">
-  <a href="#vacio"> <img src="rickandmorty/cerrar.png" alt="Cerrar" class="cerrar" ></a>
-  <div class="datos">
-  <p class="moletras">Nombre: ${personajes.name}.</p>
-  <p class="moletras">Especie: ${personajes.species}.</p>
-  <p class="moletras">Género: ${personajes.gender}.</p>
-  <p class="moletras">Origen: ${personajes.origin.name}.</p>
-  <p class="moletras">Capítulos en los que aparece:${personajes.episode.length} .</p>
-  </div> `
-  } 
-});
+
+filtroAlf.addEventListener("change", filtrado);
+
+function filtrado()
+                      {  
+          let personajesOrdenados = ordenar(this.value, nombres)          
+          posicion.innerHTML = "";     
+               
+            for (let valor of personajesOrdenados)
+            {
+              posicion.innerHTML +=  `<div class= "conte" >
+                                      <div class = "frente"> 
+                                      <a href="#${valor.id}"><img src="rickandmorty/pasaporte.png" alt="Pasaporte" class="pasaporte" ></a>
+                                      <p id="nombre" class="nombres" >${valor.name}</p>
+                                      </div>
+                                      <div class= "atras">
+                                      <a href="#${valor.id}"><img src="${valor.image}" alt="Pasaporte" class="foto"></a>
+                                      <p class="nombres">${valor.name}</p>
+                                      </div>
+                                      </div>
+                                    `   
+             modales.innerHTML+= ` <div id="${valor.id}" class="contmodal">
+                                    <div id="modal" class="modal">
+                                    <img src="${valor.image}" alt="Pasaporte" class="fotomodal">
+                                    <a href="#vacio"> <img src="rickandmorty/cerrar.png" alt="Cerrar" class="cerrar" ></a>
+                                    <div class="datos">
+                                    <p class="moletras">Nombre: ${valor.name}.</p>
+                                    <p class="moletras">Especie: ${valor.species}.</p>
+                                    <p class="moletras">Género: ${valor.gender}.</p>
+                                    <p class="moletras">Origen: ${valor.origin.name}.</p>
+                                    <p class="moletras">Capítulos en los que aparece:${valor.episode.length} .</p>
+                                    </div> `
+            }
+                             }  
+
+filtroGenero.addEventListener("change", genero);
+
+    function genero()
+                                                   {  
+        let personajesGenero = porGenero(this.value, nombres)          
+                                       posicion.innerHTML = "";     
+                                            
+                                         for (let valor of personajesGenero)
+                                         {
+                                           posicion.innerHTML +=  `<div class= "conte" >
+                                                                   <div class = "frente"> 
+                                                                   <a href="#${valor.id}"><img src="rickandmorty/pasaporte.png" alt="Pasaporte" class="pasaporte" ></a>
+                                                                   <p id="nombre" class="nombres" >${valor.name}</p>
+                                                                   </div>
+                                                                   <div class= "atras">
+                                                                   <a href="#${valor.id}"><img src="${valor.image}" alt="Pasaporte" class="foto"></a>
+                                                                   <p class="nombres">${valor.name}</p>
+                                                                   </div>
+                                                                   </div>
+                                                                 `   
+                                          modales.innerHTML+= ` <div id="${valor.id}" class="contmodal">
+                                                                 <div id="modal" class="modal">
+                                                                 <img src="${valor.image}" alt="Pasaporte" class="fotomodal">
+                                                                 <a href="#vacio"> <img src="rickandmorty/cerrar.png" alt="Cerrar" class="cerrar" ></a>
+                                                                 <div class="datos">
+                                                                 <p class="moletras">Nombre: ${valor.name}.</p>
+                                                                 <p class="moletras">Especie: ${valor.species}.</p>
+                                                                 <p class="moletras">Género: ${valor.gender}.</p>
+                                                                 <p class="moletras">Origen: ${valor.origin.name}.</p>
+                                                                 <p class="moletras">Capítulos en los que aparece:${valor.episode.length} .</p>
+                                                                 </div> `
+                                         }
+                                                          }  
+                                                          
+                             
+                               

@@ -1,56 +1,72 @@
-import { ordenar, porNombre, porGenero} from '../src/data.js';
-import data from './dataMocks.js'
+import { describe, it } from 'eslint/lib/rule-tester/rule-tester';
+import { ordenar, porNombre, porGenero } from '../src/data.js';
+import data from './dataMock.js';
 
-describe('Test de ordenado', () => {
-  it('ordenar is a function', () => {
+
+describe('ordenar', () => {
+  it('is a function', () => {
     expect(typeof ordenar).toBe('function');
   });
-  it('ordenar returns an object', () => {
-      expect(typeof ordenar(data.results)).toBe('object');
-  });
-  it('Ordenado de datos', () => {
-    expect(ordenar(data.results)).toStrictEqual(data.ordenados);
-  });
-  it('Ordenado de datos', () => {
-    expect(ordenar(data.results)).not.toStrictEqual(data.resultsDos);
-  });
-}); 
 
-describe('Test de filtrado por nombre', () => {
+  it('Retorna data ordenada alfabéticamente', () => {
+    expect(ordenar("ASC", data.results)).toStrictEqual(data.personajesOrdenados);
+    });
+
+    it('Retorna data ordenada alfabéticamente', () => {
+      expect(ordenar("ASC", data.results)).not.toStrictEqual(data.personajesDesordenados);
+      });
+
+      it('Retorna data ordenada alfabéticamente', () => {
+        expect(ordenar("DESC", data.results)).toStrictEqual(data.personajesDescendente);
+        });
+    
+        it('Retorna data ordenada alfabéticamente', () => {
+          expect(ordenar("DESC", data.results)).not.toStrictEqual(data.personajesDesordenados);
+          });
+
+});
+
+
+describe('porNombre', () => {
   it('is a function', () => {
     expect(typeof porNombre).toBe('function');
   });
-  it('filtrado por nombre', () => {
-   expect(porNombre(data.results)).toStrictEqual(data.ordenados);
-  });
-  it('filtrado por nombre', () => {
-    expect(porNombre(data.results)).not.toStrictEqual(data.resultsDos);
-    });
-  it('ordenar returns an object', () => {
-    expect(typeof porNombre(data.results)).toBe('object');
-  });
-});
 
-describe('Test de filtrado por genero', () => {
+  it('Retorna porNombre', () => {
+    expect(porNombre(data.results)).toStrictEqual(data.results);
+     });
+
+  it('Retorna porNombre', () => {
+      expect(porNombre(data.results)).not.toStrictEqual(data.personajesDesordenados);
+       });
+  });
+
+
+
+describe('porGenero', () => {
   it('is a function', () => {
     expect(typeof porGenero).toBe('function');
   });
-  it('filtrado por genero', () => {
-   expect(porGenero('Male',data.results)).toStrictEqual(data.hombres);
-  });
-  it('filtrado por genero', () => {
-   expect(porGenero('Female',data.results)).toStrictEqual(data.mujeres);
-   });
-  it('filtrado por genero', () => {
-    expect(porGenero('Female',data.results)).not.toStrictEqual(data.hombres);
-    });
-  it('filtrado por genero', () => {
-      expect(porGenero('Male',data.results)).not.toStrictEqual(data.mujeres);
+  it('Retorna porGenero', () => {
+    //
+      expect(porGenero("Male", data.results)).toEqual(
+        expect.arrayContaining(data.personajesMale))
       });
-  it('ordenar returns an object', () => {
-    expect(typeof porGenero('Male',data.results)).toBe('object');
+  it('Retorna porGenero', () => {
+      expect(porGenero("Male", data.results)).not.toStrictEqual(data.personajesFemale);
+       });
+
+  it('Retorna porGenero', () => {
+    expect(porGenero("Female", data.results)).toEqual(
+      expect.arrayContaining(data.personajesFemale))
+    });
+    
+  it('Retorna porGenero', () => {
+    expect(porGenero("Female", data.results)).not.toStrictEqual(data.personajesMale);
+           });
   });
-  it('ordenar returns an object', () => {
-    expect(typeof porGenero('Female',data.results)).toBe('object');
-  });
-});
+
+  /*toEqual(
+    expect.arrayContaining(*/
+
+    
