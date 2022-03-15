@@ -5,7 +5,6 @@ return data.sort(function (a,b){
   if (criterio =="ASC") {
            return  a.name > b.name ? 1 : -1
    }
-  
 
  /* if(criterio == "ASC"){
       if(a.name>b.name){

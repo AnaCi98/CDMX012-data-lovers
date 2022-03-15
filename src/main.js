@@ -13,8 +13,6 @@ const nombres = porNombre(valores);
 const filtroAlf = document.getElementById("filtroAlf");
 const filtroGenero = document.getElementById("filtroGenero");
 
-
-
 window.addEventListener("DOMContentLoaded", populares);
 function populares(){
   const todosLosNombres = valores.map(function({name}){
@@ -68,8 +66,8 @@ posicion.innerHTML += `<div class= "conte" >
 botonLupa.addEventListener("click", buscador);
 
    function buscador()// Al dar click a la lupa, 
-      {             
-            
+
+      {                
         let contador = []; 
         posicion.innerHTML = "";  //Limpia la busqueda anterior e inicializar la variable                          //te ejecuta la siguiente funcion
         let buscar = valorInput.value.toLowerCase();
