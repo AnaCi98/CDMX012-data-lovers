@@ -6,6 +6,7 @@
 
     <title>Data Lovers</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="phonerd.css" />  
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="shortcut icon" href="rickandmorty/favicon.ico" />
 
@@ -14,22 +15,29 @@
  
     <a href="filtrarpor.html"><img src="rickandmorty/flecha.png" alt="Icono de flecha" id="flecha" class="flecha"></a>
      <a href="index.html"><img src="rickandmorty/Homecasita.png" alt="Icono de casa" id="casa" class="casa"></a>
-   
-      <p id="busper" class="desktop">Busca a tu personaje favorito</p>
-      <p id="busper" class="mobile">Busca a tu <br> personaje favorito</p>
-      <img src="rickandmorty/logo.png" alt="Logo Rick and Morty" id="logo" class="mobile" >
-      <select name="alfabeticamente" id="desplegable">
-        <option value="ASC">A-Z</option>
-        <option value="DES">Z-A</option>
-
+     <select id= "filtroAlf" name="alfabeticamente">
+      <option value="ASC">A-Z</option>
+      <option value="DESC">Z-A</option>
     </select>
+
+    <select id= "filtroGenero" name="genero">
+      <option value="Male">Hombre</option>
+      <option value="Female">Mujer</option>
+    </select>
+
+    <p id="busper" class="desktop">Busca a tu personaje favorito</p>
+      <p id="busperm" class="mobile">Busca a tu <br> personaje favorito</p>
+      <img src="rickandmorty/logo.png" alt="Logo Rick and Morty" id="logo" class="mobile" >
 
       <input type="search"  id="buscar" maxlength="20">
       <button id="lupa"><img src="rickandmorty/lupa.png" alt="lupa" class="lupa"></button>
     
-     <br>                 
+      <section id="populares">
         <p id="popu">Los más populares</p>
+      </section>
      <section id="all"  ></section>
+
+     <a class="scrollNavigation" href="#buscar" ><p class="arrow">↑</p></a>
 
      
     <section id="modales"></section>
@@ -43,4 +51,3 @@
     <script src="main.js" type="module"></script>
   </body>
 </html>
-
